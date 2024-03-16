@@ -9,7 +9,7 @@ ESP32 scrolling text display art.
 #### Installation  
 1. Install Arduino IDE
 2. Follow setup video here: https://www.youtube.com/watch?v=adLUgmCJKnM
-3. Copy/paste module.ino code and save sketch
+3. Copy/paste module1.ino code and save sketch
 4. In saved sketch dir, copy Free_Fonts.h
 5. Plug in ESP32 into serial port and send sketch to ESP32
 #### Usage  
