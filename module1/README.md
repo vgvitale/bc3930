@@ -14,5 +14,5 @@ ESP32 scrolling text display art.
 5. Plug in ESP32 into serial port and send sketch to ESP32
 #### Usage  
 ESP32 can be displayed as artist sees fit. Please be sure to check the code and change the 0-255 values and test in your light conditions until desired screen brightness is found.  
-<img src="/images/module1/IMG_3214.jpeg" alt="IMG_3214.jpeg" style="width:512px;height:512px;">
+<img src="/images/IMG_3214.jpeg" alt="IMG_3214.jpeg" style="width:512px;height:512px;">
 
