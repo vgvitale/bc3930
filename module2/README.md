@@ -8,6 +8,7 @@ ESP32 equipped with DHT11 temperature+humidity sensor that, when powered on and 
 3. ESP32 expansion card (optional)
 4. Breadboard
 5. 3x male-to-male wires
+6. Enclosure (optional but recommended for portability)
 #### Installation  
 1. TODO
 #### Usage  
