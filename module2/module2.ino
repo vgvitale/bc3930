@@ -85,11 +85,9 @@ void loop() {
   tft.fillScreen(TFT_BLACK);
   tft.setCursor(0, 0);
 
-  // adjust the unit display based on displayInCelsius
-  String tempUnit = displayInCelsius ? " C" : " F";
+  String tempUnit = displayInCelsius ? " C" : " F"; // adjust the unit display based on displayInCelsius
 
-  // display temperature and humidity
-  tft.print("Temp: ");
+  tft.print("Temp: "); // display temperature and humidity
   tft.print(temperature);
   tft.println(tempUnit);
 
@@ -105,11 +103,9 @@ void loop() {
   Serial.println(tempUnit);
 
   if(WiFi.status() == WL_CONNECTED){
-    // string that is sent to Google API
-    String url = String(googleScriptUrl) + "?temperature=" + String(temperature) + "&humidity=" + String(humidity);
+    String url = String(googleScriptUrl) + "?temperature=" + String(temperature) + "&humidity=" + String(humidity); // string that is sent to Google API
 
-    // connect to HTTP
-    HTTPClient http;
+    HTTPClient http; // connect to HTTP
     http.begin(url);
     int httpCode = http.GET();
     if (httpCode > 0) {
