@@ -1,7 +1,7 @@
 #include "DHT.h"
 #include <WiFi.h>
 #include <HTTPClient.h>
-#include <TFT_eSPI.h>    // Include the graphics library
+#include <TFT_eSPI.h>    // graphics library for display (check your ESP32 documentation if you are not using TTGO T1)
 
 #define DHTPIN 2          // Set the pin connected to the DHT11 data pin
 #define DHTTYPE DHT11     // DHT 11
@@ -12,10 +12,10 @@ const char* password = "TODO";
 const char* googleScriptUrl = "https://script.google.com/macros/s/TODO/exec";
 
 DHT dht(DHTPIN, DHTTYPE);
-TFT_eSPI tft = TFT_eSPI();  // Create TFT instance
-volatile bool displayInCelsius = false;  // Initialized to false to default to Fahrenheit
-unsigned long lastDebounceTime = 0;  // For button debounce
-unsigned long debounceDelay = 50;    // the debounce time in milliseconds
+TFT_eSPI tft = TFT_eSPI();  // create TFT instance for display
+volatile bool displayInCelsius = false;  // default to fahrenheit
+unsigned long lastDebounceTime = 0;  // button debounce
+unsigned long debounceDelay = 50;    // debounce time in milliseconds
 
 void IRAM_ATTR isr() {
   unsigned long currentMillis = millis();
@@ -31,7 +31,7 @@ void setup() {
   dht.begin();
 
   tft.init();
-  tft.setRotation(3); // landscape with cable on left
+  tft.setRotation(3); // landscape with cable on left (if cable on right, change to 1)
   tft.fillScreen(TFT_BLACK);
   tft.setTextSize(2);
   tft.setTextColor(TFT_WHITE);
@@ -46,7 +46,7 @@ void setup() {
     Serial.println("Connecting to WiFi...");
     attempts++;
     tft.print(".");
-    if(attempts >= 30) { // Give up after 30 attempts
+    if(attempts >= 30) { // skip WiFi after 30 attempts and just display temperature and humidity
         tft.fillScreen(TFT_BLACK);
         tft.setCursor(0, 0);
         tft.println("Failed to connect");
@@ -75,7 +75,7 @@ void loop() {
   delay(2000);
 
   float humidity = dht.readHumidity();
-  float temperature = dht.readTemperature(!displayInCelsius); // Read temperature, invert displayInCelsius for correct interpretation
+  float temperature = dht.readTemperature(!displayInCelsius); // read temperature, invert displayInCelsius for correct interpretation
 
   if (isnan(humidity) || isnan(temperature)) {
     Serial.println("Failed to read from DHT sensor!");
@@ -85,10 +85,10 @@ void loop() {
   tft.fillScreen(TFT_BLACK);
   tft.setCursor(0, 0);
 
-  // Adjust the unit display based on displayInCelsius
+  // adjust the unit display based on displayInCelsius
   String tempUnit = displayInCelsius ? " C" : " F";
 
-  // Display Temperature and Humidity
+  // display temperature and humidity
   tft.print("Temp: ");
   tft.print(temperature);
   tft.println(tempUnit);
@@ -105,8 +105,10 @@ void loop() {
   Serial.println(tempUnit);
 
   if(WiFi.status() == WL_CONNECTED){
+    // string that is sent to Google API
     String url = String(googleScriptUrl) + "?temperature=" + String(temperature) + "&humidity=" + String(humidity);
 
+    // connect to HTTP
     HTTPClient http;
     http.begin(url);
     int httpCode = http.GET();
