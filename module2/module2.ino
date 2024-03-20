@@ -31,7 +31,7 @@ void setup() {
   dht.begin();
 
   tft.init();
-  tft.setRotation(0);
+  tft.setRotation(3); // landscape with cable on left
   tft.fillScreen(TFT_BLACK);
   tft.setTextSize(2);
   tft.setTextColor(TFT_WHITE);
@@ -46,7 +46,7 @@ void setup() {
     Serial.println("Connecting to WiFi...");
     attempts++;
     tft.print(".");
-    if(attempts >= 10) { // Give up after 10 attempts
+    if(attempts >= 30) { // Give up after 30 attempts
         tft.fillScreen(TFT_BLACK);
         tft.setCursor(0, 0);
         tft.println("Failed to connect");
