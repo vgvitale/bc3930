@@ -16,5 +16,5 @@ ESP32 equipped with DHT11 temperature+humidity sensor that, when powered on and 
 5. Copy module2.ino code into Arduino. Replace WiFi ssid and password with your own. Replace Google Script API link with your own
 6. Place ESP32 (with headers) into breadboard. Place DHT11 into breadboard. With waffle-pattern facing towards you, connect 3V to left-most pin with jumper wire. Repeat by connecting IO2 (alternatively: change DHTPIN in code) to second-to-left-most pin, and GND to right-most pin
 #### Usage  
-TODO
-<img src="/module1/images/IMG_3214.jpeg" alt="IMG_3214.jpeg" style="width:512px;height:683px;">
+TODO  
+<img src="/module2/images/IMG_3425.jpeg" alt="IMG_3425.jpeg" style="width:512px;height:683px;">
