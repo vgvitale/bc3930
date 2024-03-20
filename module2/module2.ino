@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-#define DHTPIN 14  // Set the pin connected to the DHT11 data pin
+#define DHTPIN 2  // Set the pin connected to the DHT11 data pin
 #define DHTTYPE DHT11 // DHT 11 
 
 const char* ssid = "TODO";
